@@ -56,11 +56,12 @@ def split_frame_right_to_left(frame):
     height, width, _ = frame.shape
     slice_width = width // 5
     slices = []
-    for i in range(4, -1, -1):
+    for i in range(4):
         start_x = i * slice_width
-        end_x = start_x + slice_width if i > 0 else width
+        end_x = start_x + slice_width
         sliced_frame = frame[:, start_x:end_x]
         slices.append(sliced_frame)
+    slices.append(frame[:, 4 * slice_width:])
     return slices
 
 
